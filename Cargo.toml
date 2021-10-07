@@ -2,11 +2,17 @@
 name = "zelda"
 version = "0.1.0"
 edition = "2018"
+authors = ["LJason <ljason@ljason.cn>"]
+readme = "README.md"
 
 [profile.release]
 codegen-units = 1
 lto = "fat"
 panic = "abort"
+
+[lib]
+name = "zelda"
+path = "src/lib.rs"
 
 [dependencies]
 dotenv = "0.15"

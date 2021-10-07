@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Serialize, Deserialize)]
 pub struct Results<'a, T> {
     /// 状态码
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub code: Option<u8>,
     /// 内容
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -14,7 +14,7 @@ pub fn not_found(status: Status, req: &Request) -> Custom<Value> {
     println!(
         "{}：\nIP：{:?}\nurl：{:?}\n",
         status,
-        &req.client_ip().unwrap(),
+        &req.client_ip(),
         &req.uri().path().as_str()
     );
     result.message = Some("路由未找到");
