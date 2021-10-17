@@ -15,7 +15,13 @@ name = "zelda"
 path = "src/lib.rs"
 
 [dependencies]
+bson = "2.0"
 dotenv = "0.15"
+
+[dependencies.mongodb]
+version = "2.0"
+default-features = false
+features = ["async-std-runtime"]
 
 [dependencies.rocket]
 git = "https://github.com/SergioBenitez/Rocket"
