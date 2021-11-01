@@ -15,3 +15,14 @@ pub struct Results<'a, T> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message: Option<&'a str>,
 }
+
+/// 小贴士
+///
+/// 返回给前端的对象结果
+#[derive(Default, Serialize, Deserialize)]
+pub struct Tip {
+    /// 标题
+    pub title: String,
+    /// 内容
+    pub tip: String,
+}

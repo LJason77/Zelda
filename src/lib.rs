@@ -25,7 +25,7 @@ pub async fn rocket() -> Rocket<Build> {
 
     rocket::build()
         .manage(db)
-        .mount("/", routes![index::health_check])
+        .mount("/", routes![index::health_check, index::tips])
         // 错误处理
         .register("/", catchers![catchers::not_found])
 }

@@ -1,5 +1,7 @@
+use bson::{doc, from_document};
 use mongodb::Database;
 use rocket::{
+    futures::TryStreamExt,
     get,
     http::Status,
     response::status::Custom,
@@ -7,7 +9,22 @@ use rocket::{
     State,
 };
 
-use crate::models::Results;
+use crate::models::{Results, Tip};
+
+/// 小贴士
+#[get("/tips")]
+pub async fn tips(db: &State<Database>) -> Custom<Value> {
+    let mut result = Results::<Tip>::default();
+    let collection = db.collection::<Tip>("tips");
+
+    let pipeline = vec![doc! {"$sample": {"size": 1}}];
+    let mut cursor = collection.aggregate(pipeline, None).await.unwrap();
+    while let Some(tip) = cursor.try_next().await.unwrap() {
+        result.data = Some(from_document::<Tip>(tip).unwrap());
+    }
+
+    Custom(Status::Ok, json!(result))
+}
 
 /// 健康检查
 #[must_use]

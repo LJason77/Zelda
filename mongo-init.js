@@ -5,8 +5,16 @@ db.createUser(
     {
         user: 'zelda',
         pwd: 'zelda',
-        roles: [{ role: 'dbOwner', db: 'zelda' }],
+        roles: [{role: 'dbOwner', db: 'zelda'}],
     },
 );
+
+// 小贴士
+db.tips.drop();
+db.tips.insertMany([
+    {"title": "古代炉", "tip": "据说是由古代希卡族制作、用蓝色火焰点燃的能量炉。似乎从 1 万多年前一直燃烧不息至今。"},
+    {"title": "传送", "tip": "通过 *-* 希卡之石的地图可以传送到神庙或塔。只要传送到目的地附近，可以缩短移动的时间。"},
+    {"title": "丘丘", "tip": "一旦攻击可能随之爆炸。从远处用枪等突刺会比较安全。"},
+]);
 
 print('END #################################################################');
